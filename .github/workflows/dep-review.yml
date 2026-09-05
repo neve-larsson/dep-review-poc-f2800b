@@ -1,0 +1,14 @@
+name: dep-review
+on: [pull_request]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: critical
+          deny-packages: pkg:npm/left-pad@1.3.0
